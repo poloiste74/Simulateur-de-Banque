@@ -1,0 +1,79 @@
+import os
+
+path_folder = "clients"                                               # Chemin du dossier où tous les clients sont répertoriés
+client = input("Bonjour cher client, veuillez entrer votre nom : ")   # Définir qui est le client avec son nom
+client_path = path_folder + "\\" + client                             # Chemin du dossier d'un seul client où il y aura son compte et le récap de ses transactions
+
+def sector():                                                         # sector() défini les actions à éxecuter
+  create_file()
+  choice()
+
+def create_file():
+    if not os.path.exists(path_folder):                                                                                    # Vérifier si le chemin (et donc le dossier 'clients') existe
+        os.makedirs(path_folder, exist_ok=True)                                                                            # Si non, le dossier 'clients' est créé
+        if not os.path.exists(client_path):                                                                                # Idem que ci-dessus mais pour le dossier du client
+            os.makedirs(client_path, exist_ok=True)
+            if os.path.exists(client_path + "\\" + client +".txt"):                                                        # Vérifier si le client possède un compte
+                print("le compte existe")
+            if not os.path.exists(client_path + "\\" + client + ".txt"):                                                   # Si le compte n'existe pas
+                load = open("{cp}\\{c}.txt".format(cp=client_path, c=client), "w")                                         # Création et chargement de celui-ci
+                load.write(str("20"))                                                                                      # Argent par défaut sur le compte
+                load.close()                                                                                               # Fermeture du fichier
+                print("Pour toute ouverture de comtpe nous vous offrons 20€ pour prendre un bon départ.")
+            if os.path.exists(client_path + "\\" + "transactions.txt"):                                                    # Vérifier si le récap des transactions ('transactions.txt) existe
+                print("le fichier 'transactions' existe")
+            if not os.path.exists(client_path + "\\" + "transactions.txt"):                                                # Si 'transactions.txt' n'existe pas 
+                load_t = open("{cp}\\transactions.txt".format(cp=client_path), "w")                                        # Création et chargement de celui-ci
+                load_t.write("-*- coding: windows-1252 -*-")                                                               # Définition du file encoding (pour ne pas avoir de soucis avec les accents et le signe €)
+                load_t.write("\nsolde de départ : 20€")                                                                    # Argent par défaut sur le compte
+                load_t.close()                                                                                             # Fermeture du fichier
+        else:                                                                                                              # Idem que de la ligne 16 à 29 mais si le dossier du client existe (possibilité de copier-coller)
+            if os.path.exists(client_path + "\\" + client +".txt"):
+                print("le compte existe")
+            if not os.path.exists(client_path + "\\" + client + ".txt"):
+                load = open("{cp}\\{c}.txt".format(cp=client_path, c=client), "w")
+                load.write(str("20"))
+                load.close()
+                print("Pour toute ouverture de comtpe nous vous offrons 20€ pour prendre un bon départ.")
+            if os.path.exists(client_path + "\\" + "transactions.txt"):
+                print("le fichier 'transactions' existe")
+            if not os.path.exists(client_path + "\\" + "transactions.txt"):
+                load_t = open("{cp}\\transactions.txt".format(cp=client_path), "w")
+                load_t.write("-*- coding: windows-1252 -*-")
+                load_t.write("\nsolde de départ : 20€")
+                load_t.close()
+    else:                                                                                                                  # Idem que pour la ligne 14 à 44 mais si le chemin (et donc le dossier 'clients') existe (possibilité de copier-coller)
+        if not os.path.exists(client_path):
+            os.makedirs(client_path, exist_ok=True)
+            if os.path.exists(client_path + "\\" + client + ".txt"):
+                print("le compte existe")
+            if not os.path.exists(client_path + "\\" + client + ".txt"):
+                load = open("{cp}\\{c}.txt".format(cp=client_path, c=client),"w")
+                load.write(str("20"))
+                load.close()
+                print("Pour toute ouverture de comtpe nous vous offrons 20€ pour prendre un bon départ.")
+            if os.path.exists(client_path + "\\" + "transactions.txt"):
+                print("le fichier 'transactions' existe ")
+            if not os.path.exists(client_path + "\\" + "transactions.txt"):
+                load_t = open("{cp}\\transactions.txt".format(cp=client_path), "w")
+                load_t.write("-*- coding: windows-1252 -*-")
+                load_t.write("\nsolde de départ : 20€")
+                load_t.close()
+        else:
+            if os.path.exists(client_path + "\\" + client + ".txt"):
+                print("le compte existe")
+            if not os.path.exists(client_path + "\\" + client + ".txt"):
+                load = open("{cp}\\{c}.txt".format(cp=client_path, c=client), "w")
+                load.write(str("20"))
+                load.close()
+                print("Pour toute ouverture de comtpe nous vous offrons 20€ pour prendre un bon départ.")
+            if os.path.exists(client_path + "\\" + "transactions.txt"):
+                print("le fichier 'transactions' existe")
+            if not os.path.exists(client_path + "\\" + "transactions.txt"):
+                load_t = open("{cp}\\transactions.txt".format(cp=client_path), "w")
+                load_t.write("-*- coding: windows-1252 -*-")
+                load_t.write("\nsolde de départ : 20€")
+                load_t.close()
+
+# Début 2e partie
+# Laisser le choix entre : ajouter ou de retirer de l'argent, de voir l'argent sur le compte ou de voir les trabsactions éffectuées grâce au compte
